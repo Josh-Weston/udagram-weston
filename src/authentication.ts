@@ -20,7 +20,7 @@ export function authenticationMiddleware(req: Request, res: Response, next: Next
 
     return jwt.verify(token, config.jwt_secret, (err, decoded) => {
         if (err) {
-            return res.status(500).send({ auth: false, message: 'Failed to authenticate.' });
+            return res.status(403).send({ auth: false, message: 'Failed to authenticate.' });
         }
         return next();
     });

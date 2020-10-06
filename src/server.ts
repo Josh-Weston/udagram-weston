@@ -40,7 +40,7 @@ import { generateJWT, authenticationMiddleware } from './authentication';
         deleteLocalFiles([ filteredImage ]);
       });
     } catch (err) {
-      res.send(`There was an error filtering the requested image. ${err}`);
+      res.status(500).send(`There was an error filtering the requested image. ${err}`);
     }
   });
   //! END @TODO1
@@ -48,13 +48,13 @@ import { generateJWT, authenticationMiddleware } from './authentication';
   // STAND OUT (AUTHENTICATION)
   // Sends the user a generic token that never expires
   app.get('/token', async(_, res) => {
-      res.send(generateJWT());
+      res.status(200).send(generateJWT());
   });
   
   // Root Endpoint
   // Displays a simple message to the user
   app.get( "/", async (_, res) => {
-    res.send("try GET /filteredimage?image_url={{}}")
+    res.status(200).send("try GET /filteredimage?image_url={{}}")
   } );
   
   // Start the Server
